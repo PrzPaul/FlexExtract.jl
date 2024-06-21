@@ -47,7 +47,7 @@ _default_control(filename) = joinpath(PATH_FLEXEXTRACT_CONTROL_DIR, filename)
 
 function __init__()
     pyimport_conda("ecmwfapi", "ecmwf-api-client", "conda-forge")
-    pyimport_conda("eccodes", "eccodes", "conda-forge")
+    pyimport_conda("eccodes", "python-eccodes", "conda-forge")
     pyimport_conda("genshi", "genshi", "conda-forge")
     pyimport_conda("numpy", "numpy", "conda-forge")
     pyimport_conda("cdsapi", "cdsapi", "conda-forge")
