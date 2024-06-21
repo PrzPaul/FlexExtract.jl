@@ -13,7 +13,7 @@ FlexExtract.jl is a package interfacing the [flex_extract](https://www.flexpart.
 The package is not registered, so you need to install it with:
 
 ```julia
-using Pkg; Pkg.add(url="https://github.com/tcarion/FlexExtract.jl")
+using Pkg; Pkg.add(url="https://github.com/PaulPerezRMA/FlexExtract.jl")
 ```
 
 If you have no pre-existing Conda installation, you might get the following error:
