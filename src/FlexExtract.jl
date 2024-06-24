@@ -366,13 +366,25 @@ function set_steps!(fcontrol::FeControl, startdate, enddate, timestep)
         end
     end
 
-    newd = Dict(
-        :START_DATE => Dates.format(startdate, "yyyymmdd"), 
-        :TYPE => join(type_ctrl, " "),
-        :TIME => join(time_ctrl, " "), 
-        :STEP => join(step_ctrl, " "), 
-        :DTIME => timestep isa String || string(timestep),
-    )
+    if Dates.Date(startdate) == Dates.Date(enddate)
+        newd = Dict(
+            :START_DATE => Dates.format(startdate, "yyyymmdd"), 
+            :TYPE => join(type_ctrl, " "),
+            :TIME => join(time_ctrl, " "), 
+            :STEP => join(step_ctrl, " "), 
+            :DTIME => timestep isa String || string(timestep),
+        )
+    else
+        newd = Dict(
+            :START_DATE => Dates.format(startdate, "yyyymmdd"), 
+            :END_DATE => Dates.format(enddate, "yyyymmdd"), 
+            :TYPE => join(type_ctrl, " "),
+            :TIME => join(time_ctrl, " "), 
+            :STEP => join(step_ctrl, " "), 
+            :DTIME => timestep isa String || string(timestep),
+        )
+    end
+
     merge!(fcontrol, newd)
 end
 set_steps!(fedir::FlexExtractDir, startdate, enddate, timestep) = set_steps!(fedir.control, startdate, enddate, timestep)
