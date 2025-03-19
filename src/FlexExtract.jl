@@ -8,6 +8,7 @@ using Pkg.Artifacts
 using PyCall
 import EcRequests
 using EcRequests: EcRequestType
+using StatsBase
 
 export 
     FlexExtractDir,
@@ -404,8 +405,9 @@ end
 set_steps!(fedir::FlexExtractDir, startdate, enddate, timestep) = set_steps!(fedir.control, startdate, enddate, timestep)
 
 function set_ensemble_rest!(fcontrol::FeControl)
+    members = sample(1:50, 9; replace=false)
     new = Dict(
-        :NUMBER => "1/to/9",
+        :NUMBER => join(members, "/"),
         :LEVELIST => "1/to/137",
         :RESOL => 799,
         :FORMAT => "GRIB2",
